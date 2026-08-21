@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propuesta — Agencia PuroMole · Vonoa Web</title>
+<meta name="description" content="Cotización para el sitio de propiedades con agenda de Airbnb y la landing de la agencia. Vonoa Web, agosto 2026." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070F21'/%3E%3Cpath d='M8 10l8 13 8-13' fill='none' stroke='%232EE9B9' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<style>
+/* ============================================
+   VonoaWeb — Brand Kit v1.0
+   ============================================ */
+:root{
+  --vw-deep-space:#070F21; --vw-navy:#02215D; --vw-cyan:#2EE9B9; --vw-blue:#1CA0F4;
+  --vw-white:#fff; --vw-slate:#94A3B8; --vw-midnight:#0F2040;
+  --vw-gradient:linear-gradient(135deg,#2EE9B9 0%,#1CA0F4 100%);
+  --border:rgba(148,163,184,.12); --border-fuerte:rgba(148,163,184,.26);
+  --font-display:'Sora',system-ui,sans-serif; --font-body:'DM Sans',system-ui,sans-serif;
+  --radius-sm:8px; --radius-md:12px; --radius-lg:16px; --radius-xl:20px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--vw-deep-space); color:var(--vw-white);
+  font-family:var(--font-body); font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.env{max-width:940px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;letter-spacing:-.02em}
+a{color:var(--vw-cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+strong{font-weight:700;color:var(--vw-white)}
+.tenue{color:var(--vw-slate)}
+
+/* ---------- marca ---------- */
+.grad{background:var(--vw-gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+.etiqueta{
+  font-family:var(--font-display);font-size:11px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--vw-cyan);
+}
+
+/* ---------- portada ---------- */
+.portada{
+  padding:72px 0 56px;
+  background:
+    radial-gradient(900px 420px at 82% -10%,rgba(28,160,244,.20),transparent 62%),
+    radial-gradient(700px 380px at 8% 4%,rgba(46,233,185,.13),transparent 60%);
+  border-bottom:1px solid var(--border);
+}
+.marca{display:flex;align-items:center;gap:12px;margin-bottom:52px}
+.marca__ico{width:38px;height:38px;flex:none}
+.marca__txt{font-family:var(--font-display);font-weight:800;font-size:19px;letter-spacing:.02em}
+.marca__txt span{color:var(--vw-slate);font-weight:600}
+.portada h1{font-size:clamp(34px,5.4vw,54px);font-weight:800;margin:14px 0 20px;max-width:17ch}
+.portada__bajada{font-size:19px;color:var(--vw-slate);max-width:60ch}
+.meta{
+  display:flex;flex-wrap:wrap;gap:10px 40px;margin-top:40px;
+  padding-top:26px;border-top:1px solid var(--border);font-size:15px;
+}
+.meta div{min-width:130px}
+.meta dt{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--vw-slate);margin-bottom:5px}
+.meta dd{font-weight:600}
+
+/* ---------- secciones ---------- */
+section{padding:60px 0;border-bottom:1px solid var(--border)}
+section h2{font-size:clamp(26px,3.4vw,36px);font-weight:700;margin:12px 0 10px}
+section > .env > p{max-width:66ch}
+.sub{color:var(--vw-slate);margin-bottom:32px;max-width:66ch}
+
+/* ---------- acuerdos ---------- */
+.acuerdos{list-style:none;display:grid;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-top:8px}
+.acuerdos li{background:var(--vw-deep-space);padding:18px 22px;display:grid;grid-template-columns:26px 1fr;gap:14px;align-items:start}
+.acuerdos li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--vw-gradient);margin-top:9px}
+
+/* ---------- reparto ---------- */
+.reparto{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+.reparto article{background:var(--vw-midnight);border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px}
+.reparto h3{font-size:19px;margin-bottom:6px}
+.reparto p{font-size:15px;color:var(--vw-slate);margin-bottom:14px}
+.reparto ul{list-style:none;font-size:15px}
+.reparto li{padding:7px 0 7px 22px;position:relative;border-top:1px solid var(--border)}
+.reparto li:first-child{border-top:0}
+.reparto li::before{content:"→";position:absolute;left:0;color:var(--vw-cyan)}
+
+/* ---------- opciones de precio ---------- */
+.opciones{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px;align-items:start}
+.op{
+  background:var(--vw-midnight);border:1px solid var(--border);
+  border-radius:var(--radius-xl);padding:28px 24px;display:flex;flex-direction:column;height:100%;
+}
+.op--reco{border-color:transparent;box-shadow:0 0 0 2px var(--vw-cyan);position:relative}
+.op__sello{
+  position:absolute;top:-11px;left:24px;background:var(--vw-gradient);color:#03121b;
+  font-family:var(--font-display);font-size:10px;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;padding:4px 12px;border-radius:999px;
+}
+.op__letra{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--vw-slate)}
+.op h3{font-size:21px;margin:6px 0 8px}
+.op__para{font-size:14px;color:var(--vw-slate);min-height:62px}
+.op__precio{font-family:var(--font-display);font-size:33px;font-weight:800;margin:16px 0 2px;letter-spacing:-.03em}
+.op__moneda{font-size:13px;color:var(--vw-slate);margin-bottom:4px}
+.op__mes{font-size:14px;font-weight:600;color:var(--vw-cyan);margin-bottom:18px}
+.op__mes--no{color:var(--vw-slate);font-weight:400}
+.op ul{list-style:none;font-size:14.5px;margin-top:auto}
+.op li{padding:8px 0 8px 24px;position:relative;border-top:1px solid var(--border)}
+.op li::before{content:"✓";position:absolute;left:0;color:var(--vw-cyan);font-weight:700}
+.op li.no{color:var(--vw-slate)}
+.op li.no::before{content:"—";color:var(--vw-slate)}
+
+/* ---------- aviso / nota ---------- */
+.nota{
+  background:linear-gradient(135deg,rgba(46,233,185,.09),rgba(28,160,244,.07));
+  border:1px solid var(--border-fuerte);border-left:3px solid var(--vw-cyan);
+  border-radius:var(--radius-md);padding:24px 26px;margin-top:30px;
+}
+.nota h3{font-size:18px;margin-bottom:10px}
+.nota p{font-size:15.5px;color:var(--vw-slate)}
+.nota p + p{margin-top:10px}
+.nota strong{color:var(--vw-white)}
+
+/* ---------- tabla ---------- */
+.tabla-env{overflow-x:auto;max-width:100%;margin-top:8px;border:1px solid var(--border);border-radius:var(--radius-lg)}
+table{width:100%;border-collapse:collapse;font-size:15.5px;min-width:460px}
+th{
+  font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--vw-slate);text-align:left;
+  padding:14px 20px;background:rgba(148,163,184,.05);border-bottom:1px solid var(--border);
+}
+td{padding:15px 20px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.total td{background:rgba(46,233,185,.06);font-weight:700;font-family:var(--font-display)}
+
+/* ---------- pasos ---------- */
+.pasos{list-style:none;counter-reset:p;display:grid;gap:14px;margin-top:8px}
+.pasos li{counter-increment:p;display:grid;grid-template-columns:38px 1fr;gap:16px;align-items:start}
+.pasos li::before{
+  content:counter(p);width:38px;height:38px;border-radius:50%;
+  display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:15px;
+  background:var(--vw-midnight);border:1px solid var(--border-fuerte);color:var(--vw-cyan);
+}
+.pasos h4{font-size:17px;margin-bottom:3px}
+.pasos p{font-size:15px;color:var(--vw-slate)}
+
+/* ---------- dos columnas ---------- */
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:38px;margin-top:8px}
+.dupla ul{list-style:none;font-size:15.5px}
+.dupla li{padding:9px 0 9px 24px;position:relative;border-top:1px solid var(--border)}
+.dupla li:first-child{border-top:0}
+.si li::before{content:"✓";position:absolute;left:0;color:var(--vw-cyan);font-weight:700}
+.no li{color:var(--vw-slate)}
+.no li::before{content:"×";position:absolute;left:0;color:var(--vw-slate);font-weight:700}
+.dupla h3{font-size:18px;margin-bottom:12px}
+
+/* ---------- demo ---------- */
+.demo{
+  background:var(--vw-midnight);border:1px solid var(--border-fuerte);
+  border-radius:var(--radius-xl);padding:32px;display:grid;
+  grid-template-columns:1fr auto;gap:26px;align-items:center;margin-top:8px;
+}
+.demo h3{font-size:22px;margin-bottom:8px}
+.demo p{font-size:15.5px;color:var(--vw-slate);max-width:52ch}
+.btn{
+  display:inline-block;background:var(--vw-gradient);color:#03121b;
+  font-family:var(--font-display);font-weight:700;font-size:15px;
+  padding:15px 30px;border-radius:999px;white-space:nowrap;
+  box-shadow:0 14px 32px -10px rgba(28,160,244,.55);transition:transform .18s var(--ease);
+}
+.btn:hover{transform:translateY(-2px);text-decoration:none}
+.btn--linea{background:transparent;color:var(--vw-white);border:1px solid var(--border-fuerte);box-shadow:none}
+
+/* ---------- cierre ---------- */
+.cierre{padding:64px 0 46px;border-bottom:0;text-align:center}
+.cierre h2{margin-bottom:14px}
+.cierre p{color:var(--vw-slate);max-width:56ch;margin:0 auto 30px}
+.cierre__btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.pie{padding:30px 0 60px;font-size:13.5px;color:var(--vw-slate);text-align:center}
+.pie strong{color:var(--vw-white)}
+
+/* ---------- responsive ---------- */
+@media(max-width:860px){
+  body{font-size:16px}
+  .opciones,.reparto,.dupla{grid-template-columns:1fr}
+  .demo{grid-template-columns:1fr}
+  .op__para{min-height:0}
+  section{padding:46px 0}
+  .portada{padding:52px 0 42px}
+}
+
+/* ---------- impresion a PDF ---------- */
+@media print{
+  body{background:#fff;color:#0b1220;font-size:11.5pt}
+  .portada{background:none;border-bottom:1px solid #c9d2e0}
+  section{border-bottom:1px solid #e2e8f0;padding:22px 0;break-inside:avoid}
+  h1,h2,h3,h4,strong,.marca__txt{color:#070F21}
+  .tenue,.sub,.op__para,.pasos p,.nota p,.demo p,.cierre p,.pie{color:#475569}
+  .op,.reparto article,.demo,.nota,.vw-mid{background:#f6f9fc;border:1px solid #d6dfeb}
+  .op--reco{box-shadow:none;border:2px solid #1CA0F4}
+  .op__sello,.btn{background:#1CA0F4;color:#fff;box-shadow:none}
+  .grad{color:#02215D;-webkit-text-fill-color:#02215D}
+  .etiqueta,.op li::before,.si li::before,.reparto li::before,.pasos li::before{color:#0284c7}
+  th{background:#eef4fa;color:#475569}
+  .cierre__btns{display:none}
+  a{color:#02215D}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;color:#64748b}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ PORTADA ══════════ -->
+<header class="portada">
+  <div class="env">
+    <div class="marca">
+      <svg class="marca__ico" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#0F2040"/>
+        <path d="M8 10l8 13 8-13" fill="none" stroke="url(#g)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#2EE9B9"/><stop offset="1" stop-color="#1CA0F4"/>
+        </linearGradient></defs>
+      </svg>
+      <span class="marca__txt">VONOA <span>WEB</span></span>
+    </div>
+
+    <p class="etiqueta">Propuesta de colaboración técnica</p>
+    <h1>Sitios de reserva directa para <span class="grad">propiedades de Airbnb</span></h1>
+    <p class="portada__bajada">
+      Ustedes ponen el diseño y la marca. Nosotros ponemos el desarrollo y la lógica
+      que hace que la agenda funcione sola.
+    </p>
+
+    <dl class="meta">
+      <div><dt>Para</dt><dd>Agencia PuroMole</dd></div>
+      <div><dt>Atención</dt><dd>Mariana Covarrubias</dd></div>
+      <div><dt>Fecha</dt><dd>21 de agosto, 2026</dd></div>
+      <div><dt>Vigencia</dt><dd>30 días naturales</dd></div>
+      <div><dt>Folio</dt><dd>VW-2608-PM01</dd></div>
+    </dl>
+  </div>
+</header>
+
+<!-- ══════════ LO QUE ACORDAMOS ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Punto de partida</p>
+    <h2>Lo que acordamos en la junta</h2>
+    <p class="sub">Para que quede por escrito antes de hablar de números.</p>
+
+    <ul class="acuerdos">
+      <li><span><strong>Nada de WordPress.</strong> Sitios ligeros y seguros, sin complementos que se rompan ni tiempos de carga que espanten. Desarrollo a la medida.</span></li>
+      <li><span><strong>La agencia lleva diseño y marca.</strong> Es parte de su paquete de branding. Nosotros respetamos ese trabajo y lo llevamos a código tal cual.</span></li>
+      <li><span><strong>Vonoa lleva desarrollo y lógica de interfaz.</strong> Calendarios, disponibilidad, precios y la sincronización con Airbnb.</span></li>
+      <li><span><strong>El dueño de las propiedades actualiza precios y títulos solo.</strong> Sin tocar código y sin llamarle a nadie.</span></li>
+      <li><span><strong>Los videos van por enlace de YouTube</strong>, no cargados al servidor: no pesan en el hosting ni frenan la carga.</span></li>
+      <li><span><strong>En este proyecto no hay tienda en línea.</strong> El objetivo es la reserva directa, no un carrito de productos.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ EL REPARTO ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Cómo trabajamos</p>
+    <h2>Quién hace qué</h2>
+    <p class="sub">
+      La sinergia que platicamos, puesta en blanco y negro. Cada quien en lo suyo,
+      sin pisarse ni duplicar horas.
+    </p>
+
+    <div class="reparto">
+      <article>
+        <h3>Agencia PuroMole</h3>
+        <p>Todo lo que el cliente ve y reconoce como suyo.</p>
+        <ul>
+          <li>Identidad, logotipo y registro de marca</li>
+          <li>Diseño de las pantallas (Figma, XD o el formato que usen)</li>
+          <li>Textos, fotografía y video</li>
+          <li>La relación con el cliente final</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Vonoa Web</h3>
+        <p>Todo lo que hace que funcione y siga funcionando.</p>
+        <ul>
+          <li>Maquetación fiel del diseño, responsiva</li>
+          <li>Motor de disponibilidad, tarifas y reglas de reserva</li>
+          <li>Sincronización con la agenda de Airbnb</li>
+          <li>Panel para que el dueño edite sin ayuda</li>
+          <li>Publicación, respaldos y soporte técnico</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="nota">
+      <h3>Trabajo de marca blanca</h3>
+      <p>
+        Entregamos bajo la marca de PuroMole. No firmamos el sitio, no aparecemos ante
+        el cliente final y no lo contactamos por fuera: <strong>la relación comercial es
+        de ustedes</strong>. Si prefieren que estemos presentes en las juntas técnicas,
+        ahí estamos, pero como parte de su equipo.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PARTIDA 1 ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Partida 1 · Cliente de Airbnb</p>
+    <h2>Sitio de propiedades con agenda sincronizada</h2>
+    <p class="sub">
+      Tres alcances según hasta dónde quieran llegar con la reserva directa.
+      El precio es por el sitio completo, sin importar si son tres propiedades o diez.
+    </p>
+
+    <div class="opciones">
+
+      <article class="op">
+        <p class="op__letra">Opción A</p>
+        <h3>Catálogo</h3>
+        <p class="op__para">La agenda se actualiza a mano. Sirve si el dueño trae pocas propiedades y no le urge automatizar.</p>
+        <p class="op__precio">$14,900</p>
+        <p class="op__moneda">MXN · pago único · más IVA</p>
+        <p class="op__mes op__mes--no">Sin costo mensual</p>
+        <ul>
+          <li>Sitio completo, responsivo</li>
+          <li>Ficha por propiedad con galería</li>
+          <li>Calendario de disponibilidad</li>
+          <li>Buscador por fechas</li>
+          <li>Cotizador de estancia automático</li>
+          <li>Cierre por WhatsApp</li>
+          <li>Panel de edición de precios y textos</li>
+          <li class="no">Sin sincronización con Airbnb</li>
+          <li class="no">Sin cobro en línea</li>
+        </ul>
+      </article>
+
+      <article class="op op--reco">
+        <span class="op__sello">Recomendada</span>
+        <p class="op__letra">Opción B</p>
+        <h3>Sincronizada</h3>
+        <p class="op__para">La agenda de Airbnb se lee sola cada pocos minutos. Es lo que vieron en la demo y lo que el cliente pidió.</p>
+        <p class="op__precio">$23,900</p>
+        <p class="op__moneda">MXN · pago único · más IVA</p>
+        <p class="op__mes">+ $1,190 MXN / mes</p>
+        <ul>
+          <li>Todo lo de la opción A</li>
+          <li><strong>Sincronización automática con Airbnb</strong></li>
+          <li>Bloqueo de noches en tiempo real</li>
+          <li>Panel del anfitrión con toda la cartera</li>
+          <li>Ocupación, ingresos y tarifa media</li>
+          <li>Llegadas y salidas del día</li>
+          <li>Servidor, respaldos y monitoreo</li>
+          <li class="no">Sin cobro en línea</li>
+        </ul>
+      </article>
+
+      <article class="op">
+        <p class="op__letra">Opción C</p>
+        <h3>Reserva directa</h3>
+        <p class="op__para">El huésped paga en el sitio y la reserva se bloquea sola. Es la que de verdad esquiva la comisión de Airbnb.</p>
+        <p class="op__precio">$34,900</p>
+        <p class="op__moneda">MXN · pago único · más IVA</p>
+        <p class="op__mes">+ $1,490 MXN / mes</p>
+        <ul>
+          <li>Todo lo de la opción B</li>
+          <li><strong>Cobro en línea</strong> (Stripe o Mercado Pago)</li>
+          <li>Anticipo o pago completo, a elegir</li>
+          <li>Confirmación automática por correo</li>
+          <li>Política de cancelación configurable</li>
+          <li>La reserva bloquea la noche al instante</li>
+          <li>Se devuelve a Airbnb por iCal propio</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <div class="nota">
+      <h3>Por qué la opción B lleva mensualidad y la A no</h3>
+      <p>
+        Airbnb publica la agenda de cada anuncio en un enlace privado (iCal), pero
+        <strong>no permite leerlo desde el navegador</strong>. Hace falta un proceso
+        corriendo en un servidor que baje esos enlaces cada pocos minutos y los guarde.
+        Eso es infraestructura viva: consume recursos todo el día, todos los días.
+      </p>
+      <p>
+        La mensualidad cubre ese servidor, los respaldos, el monitoreo de que la
+        sincronización no se caiga y el soporte. <strong>No es una cuota de mantenimiento
+        inventada</strong>: es lo que cuesta que la agenda esté correcta a las tres de la
+        mañana cuando alguien reserva desde otro huso horario. La opción A no lo necesita
+        porque no sincroniza nada.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PARTIDA 2 ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Partida 2 · Para la agencia</p>
+    <h2>Landing de PuroMole</h2>
+    <p class="sub">
+      Lo que pidieron: sencilla y directa, sin embudos de venta ni procesos largos.
+      Que se entienda qué hacen y cómo contactarlos, y ya.
+    </p>
+
+    <div class="tabla-env">
+      <table>
+        <thead>
+          <tr><th>Concepto</th><th>Detalle</th><th class="num">Inversión</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Landing de una página</strong></td>
+            <td class="tenue">Hasta 6 bloques: portada, servicios, portafolio, sobre ustedes, contacto y pie. Diseño de PuroMole, maquetado por nosotros.</td>
+            <td class="num">$7,400</td>
+          </tr>
+          <tr>
+            <td>Formulario de contacto</td>
+            <td class="tenue">Llega directo a su correo, sin plataformas de por medio ni cuotas.</td>
+            <td class="num">Incluido</td>
+          </tr>
+          <tr>
+            <td>Videos por enlace</td>
+            <td class="tenue">Integrados desde YouTube, como lo platicamos: no pesan en el hosting.</td>
+            <td class="num">Incluido</td>
+          </tr>
+          <tr>
+            <td>Publicación y dominio</td>
+            <td class="tenue">Configuración del dominio que ya tengan, certificado de seguridad y hosting el primer año.</td>
+            <td class="num">Incluido</td>
+          </tr>
+          <tr class="total">
+            <td colspan="2">Total partida 2 &mdash; más IVA</td>
+            <td class="num">$7,400 MXN</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="nota">
+      <h3>Si van por las dos partidas</h3>
+      <p>
+        Contratando el sitio de Airbnb y la landing en el mismo periodo,
+        <strong>la landing queda en $5,900 MXN</strong> — se ahorran $1,500. Es nuestra
+        forma de arrancar bien una relación que esperamos que sea de varios proyectos.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ RESUMEN ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">De un vistazo</p>
+    <h2>Resumen de inversión</h2>
+    <p class="sub">Sobre la opción B, que es la que recomendamos y la que corresponde a lo que pidió el cliente.</p>
+
+    <div class="tabla-env">
+      <table>
+        <thead>
+          <tr><th>Partida</th><th class="num">Pago único</th><th class="num">Mensual</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sitio de propiedades &mdash; opción B, sincronizada</td><td class="num">$23,900</td><td class="num">$1,190</td></tr>
+          <tr><td>Landing de PuroMole <span class="tenue">(precio de paquete)</span></td><td class="num">$5,900</td><td class="num">&mdash;</td></tr>
+          <tr class="total"><td>Total &mdash; más IVA</td><td class="num">$29,800 MXN</td><td class="num">$1,190 MXN</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="tenue" style="margin-top:18px;font-size:15px">
+      La mensualidad arranca al publicar el sitio y solo aplica a la partida 1.
+      El primer mes va incluido.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ PLAZOS Y PAGO ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Tiempos y condiciones</p>
+    <h2>Cómo avanza el proyecto</h2>
+    <p class="sub">
+      Cinco a seis semanas desde que recibimos el diseño terminado. El reloj arranca
+      con los archivos en la mano, no con el anticipo.
+    </p>
+
+    <ol class="pasos">
+      <li><div><h4>Semana 1 &mdash; Arranque</h4><p>Recibimos el diseño de PuroMole y los enlaces iCal de las propiedades. Cerramos dudas de comportamiento: mínimo de noches, recargos de temporada, política de cancelación.</p></div></li>
+      <li><div><h4>Semanas 2 y 3 &mdash; Maquetación</h4><p>El sitio público, fiel al diseño y funcionando en teléfono. Al terminar, ustedes lo revisan en un enlace privado.</p></div></li>
+      <li><div><h4>Semana 4 &mdash; Motor y sincronización</h4><p>Disponibilidad, tarifas y la conexión con Airbnb. Aquí es donde el calendario empieza a moverse solo.</p></div></li>
+      <li><div><h4>Semana 5 &mdash; Panel y ajustes</h4><p>El panel del anfitrión y dos rondas de correcciones sobre lo que ya está armado.</p></div></li>
+      <li><div><h4>Semana 6 &mdash; Publicación</h4><p>Dominio, certificado, pruebas finales y una sesión de media hora para entregarle el panel al dueño.</p></div></li>
+    </ol>
+
+    <div class="dupla" style="margin-top:40px">
+      <div>
+        <h3>Forma de pago</h3>
+        <ul class="si">
+          <li><strong>40%</strong> al aceptar la propuesta</li>
+          <li><strong>30%</strong> al aprobar la maquetación</li>
+          <li><strong>30%</strong> contra entrega y publicación</li>
+          <li>Transferencia o depósito, con factura</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Incluye sin costo extra</h3>
+        <ul class="si">
+          <li>Dos rondas de ajustes por etapa</li>
+          <li>Hosting y dominio el primer año</li>
+          <li>Certificado de seguridad</li>
+          <li>Manual y sesión de entrega</li>
+          <li>30 días de garantía sobre fallas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ALCANCE ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Sin letras chiquitas</p>
+    <h2>Qué necesitamos y qué no incluye</h2>
+
+    <div class="dupla">
+      <div>
+        <h3>Lo que necesitamos de ustedes</h3>
+        <ul class="si">
+          <li>El diseño terminado y aprobado por el cliente</li>
+          <li>Los enlaces iCal de cada anuncio de Airbnb</li>
+          <li>Textos y fotografías en su versión final</li>
+          <li>Accesos al dominio, si ya existe</li>
+          <li>Un solo interlocutor para aprobar cambios</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Lo que no incluye esta cotización</h3>
+        <ul class="no">
+          <li>Diseño gráfico o identidad (lo hacen ustedes)</li>
+          <li>Redacción de textos y fotografía</li>
+          <li>Campañas, anuncios o posicionamiento</li>
+          <li>Tienda en línea de productos</li>
+          <li>Aplicación móvil nativa</li>
+          <li>Rediseños fuera de las rondas incluidas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="nota">
+      <h3>Un aviso honesto sobre los tiempos</h3>
+      <p>
+        El plazo depende de recibir el diseño completo. Si llega por partes, el proyecto
+        se alarga y no por nuestro lado: maquetar media pantalla y rehacerla después
+        cuesta el doble. <strong>Conviene que el cliente apruebe el diseño antes de que
+        empecemos</strong>, no durante.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DEMO ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Ya lo pueden tocar</p>
+    <h2>La demo que vieron en la junta</h2>
+
+    <div class="demo">
+      <div>
+        <h3>Estancia &mdash; seis propiedades de ejemplo</h3>
+        <p>
+          Está en línea y funcionando: buscador por fechas, calendario con reglas
+          reales de reserva, cotizador de estancia y el panel del anfitrión con la
+          agenda de las seis casas en una sola pantalla. Marca ficticia, hecha para
+          enseñar el flujo completo sin pedirle accesos a nadie.
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a class="btn" href="https://vonoaweb.github.io/estancia-demo/" target="_blank" rel="noopener">Ver el sitio</a>
+        <a class="btn btn--linea" href="https://vonoaweb.github.io/estancia-demo/panel.html" target="_blank" rel="noopener">Ver el panel</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CIERRE ══════════ -->
+<section class="cierre">
+  <div class="env">
+    <p class="etiqueta">Siguiente paso</p>
+    <h2>¿Arrancamos?</h2>
+    <p>
+      Con que nos digan qué opción eligen y nos pasen el diseño, el lunes siguiente
+      estamos trabajando. Cualquier duda sobre el alcance o los números, la resolvemos
+      en una llamada de quince minutos.
+    </p>
+    <div class="cierre__btns">
+      <a class="btn" href="https://wa.me/5215644645574?text=Hola%20Vonoa%2C%20vimos%20la%20propuesta%20del%20proyecto%20de%20Airbnb" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <a class="btn btn--linea" href="mailto:hola@vonoaweb.com?subject=Propuesta%20VW-2608-PM01%20—%20Agencia%20PuroMole">hola@vonoaweb.com</a>
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="env">
+    <p><strong>Vonoa Web</strong> &mdash; Diseño web, IA y automatización · Guadalajara, Jalisco</p>
+    <p style="margin-top:6px">
+      vonoaweb.com · hola@vonoaweb.com · Propuesta VW-2608-PM01 · 21 de agosto de 2026
+    </p>
+    <p style="margin-top:12px;font-size:12.5px">
+      Precios en pesos mexicanos, más IVA. Vigencia de 30 días naturales a partir de la fecha de emisión.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
