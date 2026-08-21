@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel del anfitrión — Estancia</title>
+  <meta name="description" content="Agenda de todas las propiedades en una sola vista: ocupación, llegadas, salidas e ingreso del mes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%232e4a3d'/%3E%3Cpath d='M8 18l8-7 8 7v7H8z' fill='none' stroke='%23faf9f6' stroke-width='1.6'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <header class="encabezado encabezado--solido" id="encabezado">
+    <div class="contenedor encabezado__fila">
+      <a href="index.html" class="logo">
+        <span class="logo__nombre">Estancia</span>
+        <span class="logo__sub">Casas de temporada</span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html#propiedades">Propiedades</a>
+        <a href="index.html#agenda">Agenda</a>
+        <a href="index.html#propietarios">Para propietarios</a>
+        <a href="panel.html" class="activo">Panel</a>
+      </nav>
+
+      <div class="encabezado__acciones">
+        <a href="index.html" class="btn btn--solido">Ver el sitio</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor" id="contenido">
+
+    <div class="panel-cabeza">
+      <div>
+        <span class="antetitulo">Panel del anfitrión</span>
+        <h1>La agenda de las seis casas,<br />en una sola pantalla.</h1>
+        <p class="panel-cabeza__pie" id="panelSincro"></p>
+      </div>
+      <div class="panel-cabeza__aviso">
+        <strong>Vista interna.</strong>
+        En el sitio publicado vive detrás de contraseña: el huésped nunca la ve.
+      </div>
+    </div>
+
+    <!-- Indicadores -->
+    <section class="panel-kpis" id="panelKpis" aria-label="Indicadores del mes"></section>
+
+    <!-- Movimientos de hoy -->
+    <section class="panel-bloque">
+      <div class="encabezado-seccion">
+        <h2>Hoy</h2>
+        <span class="tenue min" id="panelFechaHoy"></span>
+      </div>
+      <div class="panel-hoy" id="panelHoy"></div>
+    </section>
+
+    <!-- Calendario general -->
+    <section class="panel-bloque">
+      <div class="encabezado-seccion">
+        <h2>Calendario general</h2>
+        <div class="panel-nav">
+          <button type="button" class="panel-nav__btn" id="mesAnterior" aria-label="Mes anterior">‹</button>
+          <span id="mesActual" class="panel-nav__mes"></span>
+          <button type="button" class="panel-nav__btn" id="mesSiguiente" aria-label="Mes siguiente">›</button>
+        </div>
+      </div>
+
+      <div class="panel-leyenda">
+        <span><i class="marca marca--airbnb"></i> Airbnb</span>
+        <span><i class="marca marca--directa"></i> Reserva directa</span>
+        <span><i class="marca marca--libre"></i> Libre</span>
+        <span class="tenue">Cada columna es una noche. Se desliza de lado.</span>
+      </div>
+
+      <div class="rejilla-scroll">
+        <div class="rejilla" id="rejilla"></div>
+      </div>
+    </section>
+
+    <!-- Próximas reservas -->
+    <section class="panel-bloque">
+      <div class="encabezado-seccion">
+        <h2>Próximas reservas</h2>
+        <span class="tenue min">Siguientes 30 días</span>
+      </div>
+      <div class="tabla-scroll">
+        <table class="tabla" id="tablaReservas">
+          <thead>
+            <tr>
+              <th>Propiedad</th>
+              <th>Llegada</th>
+              <th>Salida</th>
+              <th class="num">Noches</th>
+              <th class="num">Huéspedes</th>
+              <th>Canal</th>
+              <th class="num">Importe</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpoReservas"></tbody>
+        </table>
+      </div>
+      <p class="min tenue" id="notaReservas"></p>
+    </section>
+
+    <!-- Por propiedad -->
+    <section class="panel-bloque">
+      <div class="encabezado-seccion">
+        <h2>Rendimiento por propiedad</h2>
+        <span class="tenue min" id="rangoRendimiento"></span>
+      </div>
+      <div class="tabla-scroll">
+        <table class="tabla" id="tablaProps">
+          <thead>
+            <tr>
+              <th>Propiedad</th>
+              <th>Zona</th>
+              <th class="num">Ocupación</th>
+              <th class="num">Noches</th>
+              <th class="num">Tarifa media</th>
+              <th class="num">Ingreso</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpoProps"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="panel-nota">
+      Los números salen de la misma agenda que alimenta el sitio público. En la versión
+      real esa agenda es el iCal de cada anuncio de Airbnb; aquí se genera para poder
+      enseñar el flujo completo sin pedir accesos.
+    </p>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__fila">
+        <a href="index.html" class="logo">
+          <span class="logo__nombre">Estancia</span>
+          <span class="logo__sub">Casas de temporada</span>
+        </a>
+        <nav class="pie__enlaces">
+          <a href="index.html#propiedades">Propiedades</a>
+          <a href="index.html#agenda">Agenda</a>
+          <a href="index.html#propietarios">Para propietarios</a>
+          <a href="panel.html">Panel</a>
+        </nav>
+      </div>
+      <div class="pie__nota">
+        <span>Demo de muestra &mdash; contenido y fotograf&iacute;as de ejemplo. Desarrollado por Vonoa Web.</span>
+        <span>&copy; <span id="anio"></span> Estancia</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/panel.js"></script>
+</body>
+</html>

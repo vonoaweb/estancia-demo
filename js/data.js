@@ -116,7 +116,10 @@ const HORIZONTE = 300; // días de calendario que trae la sincronización
 function generarReservas(prop) {
   const rnd = azar(semilla(prop.id));
   const reservas = [];
-  let cursor = -12; // arranca un poco antes de hoy para que el mes en curso ya tenga historia
+  // Arranca 45 dias antes de hoy: asi el mes en curso llega completo aunque la
+  // demo se abra un dia 28. Con -12 los primeros dias del mes salian vacios en
+  // las seis propiedades y el panel mostraba una ocupacion irreal.
+  let cursor = -45;
 
   while (cursor < HORIZONTE) {
     cursor += 1 + Math.floor(rnd() * 6);
