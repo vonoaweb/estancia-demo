@@ -1245,6 +1245,16 @@ button.cal__dia:not([disabled]):hover { background: var(--papel-2); }
 }
 .panel-leyenda li,
 .panel-leyenda span { display: flex; align-items: center; }
+/* Los iconos se inyectan desde JS sin atributos de tamano: sin esto el SVG
+   se estira hasta el ancho del contenedor. */
+.panel-cabeza__pie svg {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
 .rejilla__cab--finde { color: var(--tinta-2); background: var(--papel-2); }
 
 .marca { display: inline-block; width: 11px; height: 11px; flex: none; border-radius: var(--r); margin-right: 6px; }

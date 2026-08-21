@@ -386,7 +386,7 @@ function montarPanel() {
   montarEsqueleto();
 
   $('#panelSincro').innerHTML =
-    `${Icono.candado} Agenda sincronizada con Airbnb ${textoSincronizacion()} · ` +
+    `Agenda sincronizada con Airbnb ${textoSincronizacion()} · ` +
     `${PROPIEDADES.length} propiedades conectadas`;
 
   $('#mesAnterior').addEventListener('click', () => {
@@ -411,7 +411,7 @@ function montarPanel() {
     const s = $('#panelSincro');
     if (s) {
       s.innerHTML =
-        `${Icono.candado} Agenda sincronizada con Airbnb ${textoSincronizacion()} · ` +
+        `Agenda sincronizada con Airbnb ${textoSincronizacion()} · ` +
         `${PROPIEDADES.length} propiedades conectadas`;
     }
   }, 60000);
