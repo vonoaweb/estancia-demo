@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propiedad — Estancia</title>
+  <meta name="description" content="Disponibilidad en tiempo real, tarifas y reserva de la propiedad." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%232e4a3d'/%3E%3Cpath d='M8 18l8-7 8 7v7H8z' fill='none' stroke='%23faf9f6' stroke-width='1.6'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <header class="encabezado encabezado--solido" id="encabezado">
+    <div class="contenedor encabezado__fila">
+      <a href="index.html" class="logo">
+        <span class="logo__nombre">Estancia</span>
+        <span class="logo__sub">Casas de temporada</span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html#propiedades">Propiedades</a>
+        <a href="index.html#agenda">Agenda</a>
+        <a href="index.html#propietarios">Para propietarios</a>
+        <a href="index.html#preguntas">Preguntas</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+
+      <div class="encabezado__acciones">
+        <a href="index.html#propiedades" class="btn btn--solido">Ver todas</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor" id="contenido">
+    <p class="migas">
+      <a href="index.html">Inicio</a> ·
+      <a href="index.html#propiedades">Propiedades</a> ·
+      <span id="migaNombre"></span>
+    </p>
+
+    <div class="prop-cabeza">
+      <div>
+        <h1 id="propNombre"></h1>
+        <div class="prop-cabeza__meta" id="propMeta"></div>
+      </div>
+      <a href="index.html#propiedades" class="enlace">Volver a la cartera</a>
+    </div>
+
+    <div class="galeria" id="galeria"></div>
+
+    <div class="prop-cuerpo">
+      <div>
+        <section class="bloque">
+          <h2 id="propTipo"></h2>
+          <p id="propResumen" style="font-size:1.05rem"></p>
+          <p id="propDescripcion" style="margin-top:16px"></p>
+        </section>
+
+        <section class="bloque">
+          <h2>Lo que incluye</h2>
+          <ul class="amenidades" id="propAmenidades"></ul>
+        </section>
+
+        <section class="bloque">
+          <h2>Detalles de la casa</h2>
+          <ul class="lista-puntos" id="propDetalles"></ul>
+        </section>
+
+        <section class="bloque">
+          <h2>Reglas y condiciones</h2>
+          <ul class="lista-puntos" id="propReglas"></ul>
+        </section>
+
+        <section class="bloque">
+          <h2>Huéspedes recientes</h2>
+          <div class="resenas" id="propResenas" style="grid-template-columns:1fr 1fr"></div>
+        </section>
+      </div>
+
+      <aside class="reserva" id="reserva">
+        <div class="reserva__precio">
+          <div><strong id="precioNoche"></strong> <span>por noche</span></div>
+          <span class="ficha__rating" id="ratingPanel"></span>
+        </div>
+
+        <div class="reserva__fechas">
+          <div class="reserva__fecha">
+            <span>Llegada</span>
+            <strong class="vacia" id="txtEntrada">Elegir</strong>
+          </div>
+          <div class="reserva__fecha">
+            <span>Salida</span>
+            <strong class="vacia" id="txtSalida">Elegir</strong>
+          </div>
+        </div>
+
+        <div class="campo" style="margin-bottom:18px">
+          <label for="huespedesProp">Huéspedes</label>
+          <select id="huespedesProp"></select>
+        </div>
+
+        <div id="calProp"></div>
+
+        <ul class="desglose" id="desglose"></ul>
+
+        <div class="reserva__acciones">
+          <button type="button" class="btn btn--acento btn--grande btn--bloque" id="btnReservar">Reservar estas fechas</button>
+          <a class="btn btn--linea btn--bloque" id="btnWhats" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+        </div>
+
+        <p class="reserva__pie" id="pieSincro"></p>
+      </aside>
+    </div>
+
+    <section class="seccion seccion--linea" id="similares">
+      <div class="encabezado-seccion">
+        <div>
+          <span class="antetitulo">También disponibles</span>
+          <h2>Otras casas de la cartera.</h2>
+        </div>
+      </div>
+      <div class="cartera" id="carteraSimilares"></div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__fila">
+        <a href="index.html" class="logo">
+          <span class="logo__nombre">Estancia</span>
+          <span class="logo__sub">Casas de temporada</span>
+        </a>
+        <nav class="pie__enlaces">
+          <a href="index.html#propiedades">Propiedades</a>
+          <a href="index.html#agenda">Agenda</a>
+          <a href="index.html#propietarios">Para propietarios</a>
+          <a href="index.html#contacto">Contacto</a>
+        </nav>
+      </div>
+      <div class="pie__nota">
+        <span>Demo de muestra — contenido y fotografías de ejemplo. Desarrollado por Vonoa Web.</span>
+        <span>&copy; <span id="anio"></span> Estancia</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- visor de fotos -->
+  <div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Fotografías">
+    <button class="visor__cerrar" id="visorCerrar" aria-label="Cerrar">&times;</button>
+    <button class="visor__nav visor__nav--izq" data-visor="-1" aria-label="Anterior">
+      <svg viewBox="0 0 24 24"><path d="M14 5l-7 7 7 7"/></svg>
+    </button>
+    <img id="visorImg" src="" alt="" />
+    <button class="visor__nav visor__nav--der" data-visor="1" aria-label="Siguiente">
+      <svg viewBox="0 0 24 24"><path d="M10 5l7 7-7 7"/></svg>
+    </button>
+    <span class="visor__cuenta" id="visorCuenta"></span>
+  </div>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <div class="modal__caja">
+      <button class="modal__cerrar" data-cierra-modal aria-label="Cerrar">&times;</button>
+      <div id="modalCuerpo"></div>
+    </div>
+  </div>
+
+  <div class="aviso-flotante" id="avisoFlotante" role="status"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/calendario.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/propiedad.js"></script>
+</body>
+</html>

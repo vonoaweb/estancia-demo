@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estancia — Casas de temporada con agenda sincronizada con Airbnb</title>
+  <meta name="description" content="Cartera de casas, cabañas y departamentos en renta por noche en Monterrey y la sierra. Disponibilidad en tiempo real tomada del calendario de Airbnb." />
+  <meta property="og:title" content="Estancia — Casas de temporada" />
+  <meta property="og:description" content="Consulta disponibilidad real y reserva en minutos." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%232e4a3d'/%3E%3Cpath d='M8 18l8-7 8 7v7H8z' fill='none' stroke='%23faf9f6' stroke-width='1.6'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <!-- ===== ENCABEZADO ===== -->
+  <header class="encabezado" id="encabezado">
+    <div class="contenedor encabezado__fila">
+      <a href="#inicio" class="logo">
+        <span class="logo__nombre">Estancia</span>
+        <span class="logo__sub">Casas de temporada</span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="#propiedades">Propiedades</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#propietarios">Para propietarios</a>
+        <a href="#preguntas">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="encabezado__acciones">
+        <a href="#contacto" class="btn btn--solido">Reservar</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- ===== PORTADA ===== -->
+    <section class="portada">
+      <div class="contenedor">
+        <div class="portada__alto">
+          <h1 class="revelar">Casas para <em>quedarse</em><br />unos días.</h1>
+          <p class="portada__bajada revelar">
+            Seis propiedades en Monterrey y la sierra de Santiago, administradas por
+            nosotros. Elige fechas y mira al momento cuáles están libres: la
+            disponibilidad viene directo del calendario de Airbnb.
+          </p>
+        </div>
+
+        <!-- buscador -->
+        <div class="buscador revelar" id="buscador">
+          <button type="button" class="buscador__campo" data-abre="fechas">
+            <span>Llegada</span>
+            <strong id="etiquetaLlegada">Elegir fecha</strong>
+          </button>
+          <button type="button" class="buscador__campo" data-abre="fechas">
+            <span>Salida</span>
+            <strong id="etiquetaSalida">Elegir fecha</strong>
+          </button>
+          <label class="buscador__campo" for="huespedes">
+            <span>Huéspedes</span>
+            <select id="huespedes">
+              <option value="0">Cualquiera</option>
+              <option value="2">2 huéspedes</option>
+              <option value="4">4 huéspedes</option>
+              <option value="6">6 huéspedes</option>
+              <option value="8">8 huéspedes</option>
+              <option value="10">10 huéspedes</option>
+            </select>
+          </label>
+          <div class="buscador__accion">
+            <button type="button" class="btn btn--acento" id="btnBuscar">Ver disponibles</button>
+          </div>
+
+          <div class="buscador__popover" id="popoverFechas">
+            <div id="calBuscador"></div>
+            <div class="buscador__popover-pie">
+              <button type="button" class="enlace" id="limpiarFechas">Limpiar fechas</button>
+              <button type="button" class="btn btn--solido" id="cerrarFechas">Listo</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="buscador__resultado revelar" id="resultadoBusqueda"></p>
+
+        <div class="portada__marco revelar">
+          <img src="" data-foto="1512917774080-9991f1c4c750" data-ancho="1800" alt="Casa de temporada con jardín al atardecer" />
+          <div class="portada__sello">
+            <span class="sello-sincro"><i></i> Agenda sincronizada</span>
+            <span class="tenue" id="selloSincro"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CIFRAS ===== -->
+    <section class="seccion--corta">
+      <div class="contenedor">
+        <div class="cifras revelar" id="cifras"></div>
+      </div>
+    </section>
+
+    <!-- ===== PROPIEDADES ===== -->
+    <section class="seccion" id="propiedades">
+      <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+          <div>
+            <span class="antetitulo">La cartera</span>
+            <h2>Cada casa, con su<br />agenda al día.</h2>
+          </div>
+          <p>
+            Precios por noche con tarifa de fin de semana ya aplicada. Al elegir fechas,
+            cada tarjeta muestra el total de la estancia.
+          </p>
+        </div>
+
+        <div class="filtros revelar" id="filtros" role="group" aria-label="Filtrar propiedades">
+          <button class="chip activo" data-filtro="todas">Todas</button>
+          <button class="chip" data-filtro="ciudad">Ciudad</button>
+          <button class="chip" data-filtro="sierra">Sierra</button>
+          <button class="chip" data-filtro="alberca">Con alberca</button>
+          <button class="chip" data-filtro="mascotas">Pet friendly</button>
+        </div>
+
+        <div class="cartera" id="cartera" style="margin-top: 34px"></div>
+      </div>
+    </section>
+
+    <!-- ===== AGENDA / SINCRONIZACION ===== -->
+    <section class="seccion seccion--linea" id="agenda">
+      <div class="contenedor">
+        <div class="sincro">
+          <div class="revelar">
+            <span class="antetitulo">Cómo funciona</span>
+            <h2>La misma agenda<br />que ves en Airbnb.</h2>
+            <p class="entrada" style="margin-top: 22px">
+              Airbnb publica el calendario de cada anuncio en un enlace privado.
+              El sitio lo lee cada 15 minutos y bloquea las noches ocupadas por su cuenta, sin que nadie capture nada a mano.
+            </p>
+
+            <ol class="pasos">
+              <li>
+                <b>01</b>
+                <div>
+                  <h3>Se conecta el anuncio</h3>
+                  <p>En Airbnb: Anuncio › Disponibilidad › Sincronizar calendarios. De ahí sale el enlace iCal que se pega una sola vez.</p>
+                </div>
+              </li>
+              <li>
+                <b>02</b>
+                <div>
+                  <h3>El sitio lee las noches ocupadas</h3>
+                  <p>Reservas de Airbnb, bloqueos manuales y fechas de otras plataformas se marcan como no disponibles.</p>
+                </div>
+              </li>
+              <li>
+                <b>03</b>
+                <div>
+                  <h3>El huésped reserva sin llamadas</h3>
+                  <p>Ve las fechas libres, el total exacto y pasa a Airbnb con la estancia ya armada, o escribe por WhatsApp.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="panel-agenda revelar">
+            <div class="panel-agenda__cabeza">
+              <div>
+                <h3>Disponibilidad en vivo</h3>
+                <p id="panelZona"></p>
+              </div>
+              <span class="sello-sincro"><i></i> <span id="panelSincro">Sincronizado</span></span>
+            </div>
+            <div class="selector-prop" id="selectorProp"></div>
+            <div id="calPanel"></div>
+            <div class="panel-agenda__pie">
+              <span id="panelOcupacion"></span>
+              <span id="panelProxima"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROPIETARIOS ===== -->
+    <section class="seccion oscuro" id="propietarios">
+      <div class="contenedor">
+        <div class="propietarios">
+          <div class="revelar">
+            <span class="antetitulo">Para propietarios</span>
+            <h2>Tu casa, operada<br />como negocio.</h2>
+            <p style="margin-top: 22px">
+              Administramos la propiedad de punta a punta: anuncio, tarifas, huéspedes,
+              limpieza y mantenimiento. Tú recibes el depósito y el reporte del mes.
+            </p>
+            <a href="#contacto" class="btn btn--claro btn--grande" style="margin-top: 30px">
+              Solicitar evaluación de tu propiedad
+            </a>
+          </div>
+
+          <ul class="servicios revelar">
+            <li>
+              <h3>Anuncio y tarifas</h3>
+              <p>Fotografía, redacción del anuncio y precios que se mueven por temporada, puentes y eventos de la ciudad.</p>
+            </li>
+            <li>
+              <h3>Atención al huésped</h3>
+              <p>Respondemos en minutos, coordinamos entradas autónomas y resolvemos incidencias durante la estancia.</p>
+            </li>
+            <li>
+              <h3>Limpieza y mantenimiento</h3>
+              <p>Equipo propio entre reservas, revisión de blancos y consumibles, y bitácora de reparaciones.</p>
+            </li>
+            <li>
+              <h3>Reporte mensual</h3>
+              <p>Ocupación, ingreso por noche y comparativo contra la zona. Sin letras chiquitas.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RESENAS ===== -->
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+          <div>
+            <span class="antetitulo">Huéspedes</span>
+            <h2>Lo que dicen<br />al salir.</h2>
+          </div>
+        </div>
+
+        <div class="resenas">
+          <figure class="resena revelar">
+            <blockquote>&ldquo;Todo estaba tal cual las fotos y la entrada fue con código, llegamos a la una de la mañana sin problema.&rdquo;</blockquote>
+            <figcaption><strong>Daniela R.</strong> Loft Vasconcelos · marzo</figcaption>
+          </figure>
+          <figure class="resena revelar">
+            <blockquote>&ldquo;Fuimos catorce primos a la casa de Valle Alto. La alberca climatizada valió cada peso.&rdquo;</blockquote>
+            <figcaption><strong>Jorge M.</strong> Casa Sierra Madre · enero</figcaption>
+          </figure>
+          <figure class="resena revelar">
+            <blockquote>&ldquo;Reservé desde la página un jueves y el viernes ya estábamos en la cabaña. Cero vueltas.&rdquo;</blockquote>
+            <figcaption><strong>Ana Sofía L.</strong> Cabaña Los Cavazos · diciembre</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PREGUNTAS ===== -->
+    <section class="seccion seccion--linea" id="preguntas">
+      <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+          <div>
+            <span class="antetitulo">Preguntas</span>
+            <h2>Antes de reservar.</h2>
+          </div>
+        </div>
+
+        <div class="preguntas revelar">
+          <details open>
+            <summary>Las fechas que veo, ¿son las reales?</summary>
+            <p>Sí. El calendario se alimenta del enlace iCal de cada anuncio de Airbnb y se actualiza cada 15 minutos, así que refleja reservas de Airbnb, de otras plataformas y bloqueos que hagamos nosotros.</p>
+          </details>
+          <details>
+            <summary>¿Puedo reservar aquí mismo o tengo que ir a Airbnb?</summary>
+            <p>Las dos. Puedes pasar a Airbnb con las fechas ya cargadas y pagar con su protección al huésped, o escribirnos por WhatsApp para reservar directo con transferencia.</p>
+          </details>
+          <details>
+            <summary>¿Cómo se calcula el total?</summary>
+            <p>Tarifa por noche (viernes y sábado suben 18%), más limpieza. En estancias de siete noches o más se aplica 10% de descuento automático. No hay cargos escondidos.</p>
+          </details>
+          <details>
+            <summary>¿Cuál es la política de cancelación?</summary>
+            <p>Cancelación gratuita hasta cinco días antes de la llegada. Después de ese plazo se retiene la primera noche. En puentes y fin de año aplican condiciones distintas que se avisan antes de confirmar.</p>
+          </details>
+          <details>
+            <summary>Soy propietario, ¿pueden administrar mi casa?</summary>
+            <p>Si está en Monterrey, San Pedro o la zona de Santiago, sí. Hacemos una evaluación sin costo con estimado de ocupación e ingreso mensual antes de firmar nada.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section class="seccion" id="contacto">
+      <div class="contenedor">
+        <div class="contacto">
+          <div class="revelar">
+            <span class="antetitulo">Contacto</span>
+            <h2>Cuéntanos qué<br />fechas buscas.</h2>
+            <p class="entrada" style="margin-top: 20px">
+              Contestamos el mismo día. Si ya tienes fechas en mente, mándalas y te
+              confirmamos qué propiedades quedan libres.
+            </p>
+
+            <ul class="datos-contacto" style="margin-top: 34px">
+              <li>
+                <span>WhatsApp</span>
+                <a href="#" id="enlaceWhats">Escribir por WhatsApp</a>
+              </li>
+              <li>
+                <span>Correo</span>
+                <a href="#" id="enlaceCorreo"></a>
+              </li>
+              <li>
+                <span>Zona</span>
+                <strong id="datoCiudad"></strong>
+              </li>
+            </ul>
+          </div>
+
+          <form class="formulario revelar" id="formContacto">
+            <div class="dupla">
+              <div class="campo">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Cómo te llamas" />
+              </div>
+              <div class="campo">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" required placeholder="10 dígitos" />
+              </div>
+            </div>
+            <div class="campo">
+              <label for="propiedadInteres">Propiedad de interés</label>
+              <select id="propiedadInteres" name="propiedad"></select>
+            </div>
+            <div class="dupla">
+              <div class="campo">
+                <label for="llegadaForm">Llegada</label>
+                <input type="date" id="llegadaForm" name="llegada" />
+              </div>
+              <div class="campo">
+                <label for="salidaForm">Salida</label>
+                <input type="date" id="salidaForm" name="salida" />
+              </div>
+            </div>
+            <div class="campo">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Cuántos son, si viajan con mascota, cualquier detalle."></textarea>
+            </div>
+            <button type="submit" class="btn btn--acento btn--grande btn--bloque">Enviar por WhatsApp</button>
+            <p class="min tenue">Se abre WhatsApp con el mensaje ya redactado. No guardamos nada en el sitio.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== PIE ===== -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__fila">
+        <a href="#inicio" class="logo">
+          <span class="logo__nombre">Estancia</span>
+          <span class="logo__sub">Casas de temporada</span>
+        </a>
+        <nav class="pie__enlaces">
+          <a href="#propiedades">Propiedades</a>
+          <a href="#agenda">Agenda</a>
+          <a href="#propietarios">Para propietarios</a>
+          <a href="#preguntas">Preguntas</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+      <div class="pie__nota">
+        <span>Demo de muestra — contenido y fotografías de ejemplo. Desarrollado por Vonoa Web.</span>
+        <span>&copy; <span id="anio"></span> Estancia</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== MODAL ===== -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+    <div class="modal__caja">
+      <button class="modal__cerrar" data-cierra-modal aria-label="Cerrar">&times;</button>
+      <div id="modalCuerpo"></div>
+    </div>
+  </div>
+
+  <div class="aviso-flotante" id="avisoFlotante" role="status"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/calendario.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
