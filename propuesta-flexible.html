@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Formas de arrancar — Agencia PuroMole · Vonoa Web</title>
+<meta name="description" content="Tres formas de pagar el mismo sistema, más un arranque piloto. Vonoa Web, agosto 2026." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070F21'/%3E%3Cpath d='M8 10l8 13 8-13' fill='none' stroke='%232EE9B9' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<style>
+/* ============================================
+   VonoaWeb — Brand Kit v1.0
+   ============================================ */
+:root{
+  --vw-deep-space:#070F21; --vw-navy:#02215D; --vw-cyan:#2EE9B9; --vw-blue:#1CA0F4;
+  --vw-white:#fff; --vw-slate:#94A3B8; --vw-midnight:#0F2040;
+  --vw-gradient:linear-gradient(135deg,#2EE9B9 0%,#1CA0F4 100%);
+  --border:rgba(148,163,184,.12); --border-fuerte:rgba(148,163,184,.26);
+  --font-display:'Sora',system-ui,sans-serif; --font-body:'DM Sans',system-ui,sans-serif;
+  --radius-md:12px; --radius-lg:16px; --radius-xl:20px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--vw-deep-space);color:var(--vw-white);font-family:var(--font-body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.env{max-width:960px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;letter-spacing:-.02em}
+a{color:var(--vw-cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+strong{font-weight:700;color:var(--vw-white)}
+.tenue{color:var(--vw-slate)}
+.grad{background:var(--vw-gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+.etiqueta{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--vw-cyan)}
+
+/* ---------- portada ---------- */
+.portada{padding:70px 0 54px;background:radial-gradient(900px 420px at 82% -10%,rgba(28,160,244,.20),transparent 62%),radial-gradient(700px 380px at 8% 4%,rgba(46,233,185,.13),transparent 60%);border-bottom:1px solid var(--border)}
+.marca{display:flex;align-items:center;gap:12px;margin-bottom:48px}
+.marca__ico{width:38px;height:38px;flex:none}
+.marca__txt{font-family:var(--font-display);font-weight:800;font-size:19px;letter-spacing:.02em}
+.marca__txt span{color:var(--vw-slate);font-weight:600}
+.portada h1{font-size:clamp(33px,5.2vw,52px);font-weight:800;margin:14px 0 20px;max-width:18ch}
+.portada__bajada{font-size:19px;color:var(--vw-slate);max-width:62ch}
+.meta{display:flex;flex-wrap:wrap;gap:10px 40px;margin-top:38px;padding-top:26px;border-top:1px solid var(--border);font-size:15px}
+.meta div{min-width:130px}
+.meta dt{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--vw-slate);margin-bottom:5px}
+.meta dd{font-weight:600}
+
+section{padding:58px 0;border-bottom:1px solid var(--border)}
+section h2{font-size:clamp(26px,3.4vw,36px);font-weight:700;margin:12px 0 10px}
+.sub{color:var(--vw-slate);margin-bottom:30px;max-width:66ch}
+
+/* ---------- calculadora ---------- */
+.calc{background:var(--vw-midnight);border:1px solid var(--border-fuerte);border-radius:var(--radius-xl);padding:32px;margin-top:10px}
+.calc__campos{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 26px}
+.campo label{display:block;font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vw-slate);margin-bottom:9px}
+.campo__fila{display:flex;align-items:center;gap:14px}
+.campo input[type=range]{flex:1;accent-color:var(--vw-cyan);height:4px}
+.campo__val{font-family:var(--font-display);font-weight:700;font-size:17px;min-width:96px;text-align:right;font-variant-numeric:tabular-nums}
+.campo__pie{font-size:12.5px;color:var(--vw-slate);margin-top:7px}
+
+.calc__salida{margin-top:30px;padding-top:26px;border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.res{text-align:center}
+.res__cifra{font-family:var(--font-display);font-size:29px;font-weight:800;letter-spacing:-.03em}
+.res__cifra--bien{color:var(--vw-cyan)}
+.res__et{font-size:12.5px;color:var(--vw-slate);margin-top:4px}
+.veredicto{margin-top:24px;padding:18px 22px;border-radius:var(--radius-md);background:rgba(46,233,185,.10);border:1px solid rgba(46,233,185,.32);font-size:16px;text-align:center}
+.veredicto strong{color:var(--vw-cyan)}
+.veredicto--flojo{background:rgba(148,163,184,.10);border-color:var(--border-fuerte)}
+.veredicto--flojo strong{color:var(--vw-white)}
+.supuestos{font-size:13px;color:var(--vw-slate);margin-top:20px;padding-top:18px;border-top:1px solid var(--border)}
+
+/* ---------- modalidades ---------- */
+.mods{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px;align-items:start}
+.mod{background:var(--vw-midnight);border:1px solid var(--border);border-radius:var(--radius-xl);padding:28px 24px;display:flex;flex-direction:column;height:100%}
+.mod--reco{border-color:transparent;box-shadow:0 0 0 2px var(--vw-cyan);position:relative}
+.mod__sello{position:absolute;top:-11px;left:24px;background:var(--vw-gradient);color:#03121b;font-family:var(--font-display);font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;padding:4px 12px;border-radius:999px}
+.mod__letra{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--vw-slate)}
+.mod h3{font-size:20px;margin:6px 0 8px}
+.mod__para{font-size:14px;color:var(--vw-slate);min-height:66px}
+.mod__cifras{margin:18px 0 4px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.mod__linea{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:4px 0}
+.mod__linea span{font-size:14px;color:var(--vw-slate)}
+.mod__linea b{font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:-.02em}
+.mod__linea--chica b{font-size:17px}
+.mod__nota{font-size:13px;color:var(--vw-slate);margin-top:12px;line-height:1.5}
+.mod ul{list-style:none;font-size:14.5px;margin-top:16px}
+.mod li{padding:7px 0 7px 22px;position:relative;border-top:1px solid var(--border)}
+.mod li::before{content:"✓";position:absolute;left:0;color:var(--vw-cyan);font-weight:700}
+
+/* ---------- piloto ---------- */
+.piloto{background:linear-gradient(135deg,rgba(46,233,185,.10),rgba(28,160,244,.08));border:1px solid var(--border-fuerte);border-radius:var(--radius-xl);padding:34px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;margin-top:10px}
+.piloto h3{font-size:24px;margin-bottom:10px}
+.piloto p{font-size:16px;color:var(--vw-slate);max-width:54ch}
+.piloto p + p{margin-top:12px}
+.piloto__precio{text-align:right;white-space:nowrap}
+.piloto__precio b{display:block;font-family:var(--font-display);font-size:38px;font-weight:800;letter-spacing:-.03em}
+.piloto__precio span{font-size:14px;color:var(--vw-slate)}
+
+/* ---------- nota ---------- */
+.nota{background:linear-gradient(135deg,rgba(46,233,185,.09),rgba(28,160,244,.07));border:1px solid var(--border-fuerte);border-left:3px solid var(--vw-cyan);border-radius:var(--radius-md);padding:24px 26px;margin-top:28px}
+.nota h3{font-size:18px;margin-bottom:10px}
+.nota p{font-size:15.5px;color:var(--vw-slate)}
+.nota p + p{margin-top:10px}
+.nota strong{color:var(--vw-white)}
+
+/* ---------- tabla ---------- */
+.tabla-env{overflow-x:auto;max-width:100%;margin-top:10px;border:1px solid var(--border);border-radius:var(--radius-lg)}
+table{width:100%;border-collapse:collapse;font-size:15.5px;min-width:520px}
+th{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--vw-slate);text-align:left;padding:14px 18px;background:rgba(148,163,184,.05);border-bottom:1px solid var(--border)}
+td{padding:14px 18px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.destaca td{background:rgba(46,233,185,.07)}
+
+/* ---------- dupla ---------- */
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:8px}
+.dupla ul{list-style:none;font-size:15.5px}
+.dupla li{padding:9px 0 9px 24px;position:relative;border-top:1px solid var(--border)}
+.dupla li:first-child{border-top:0}
+.si li::before{content:"✓";position:absolute;left:0;color:var(--vw-cyan);font-weight:700}
+.no li{color:var(--vw-slate)}
+.no li::before{content:"×";position:absolute;left:0;color:var(--vw-slate);font-weight:700}
+.dupla h3{font-size:18px;margin-bottom:12px}
+
+/* ---------- cierre ---------- */
+.btn{display:inline-block;background:var(--vw-gradient);color:#03121b;font-family:var(--font-display);font-weight:700;font-size:15px;padding:15px 30px;border-radius:999px;white-space:nowrap;box-shadow:0 14px 32px -10px rgba(28,160,244,.55);transition:transform .18s var(--ease)}
+.btn:hover{transform:translateY(-2px);text-decoration:none}
+.btn--linea{background:transparent;color:var(--vw-white);border:1px solid var(--border-fuerte);box-shadow:none}
+.cierre{padding:62px 0 46px;border-bottom:0;text-align:center}
+.cierre h2{margin-bottom:14px}
+.cierre p{color:var(--vw-slate);max-width:58ch;margin:0 auto 30px}
+.cierre__btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.pie{padding:30px 0 60px;font-size:13.5px;color:var(--vw-slate);text-align:center}
+.pie strong{color:var(--vw-white)}
+
+@media(max-width:880px){
+  body{font-size:16px}
+  .mods,.dupla,.calc__campos{grid-template-columns:1fr}
+  .piloto{grid-template-columns:1fr}
+  .piloto__precio{text-align:left}
+  .calc__salida{grid-template-columns:1fr;gap:24px}
+  .mod__para{min-height:0}
+  section{padding:44px 0}
+  .calc{padding:24px}
+}
+
+@media print{
+  body{background:#fff;color:#0b1220;font-size:11.5pt}
+  .portada{background:none;border-bottom:1px solid #c9d2e0}
+  section{border-bottom:1px solid #e2e8f0;padding:22px 0;break-inside:avoid}
+  h1,h2,h3,h4,strong,.marca__txt,.mod__linea b,.res__cifra,.piloto__precio b{color:#070F21}
+  .tenue,.sub,.mod__para,.mod__nota,.nota p,.cierre p,.pie,.res__et,.campo__pie,.supuestos,.piloto p{color:#475569}
+  .mod,.calc,.piloto,.nota{background:#f6f9fc;border:1px solid #d6dfeb}
+  .mod--reco{box-shadow:none;border:2px solid #1CA0F4}
+  .mod__sello,.btn{background:#1CA0F4;color:#fff;box-shadow:none}
+  .grad{color:#02215D;-webkit-text-fill-color:#02215D}
+  .etiqueta,.mod li::before,.si li::before,.res__cifra--bien{color:#0284c7}
+  .veredicto{background:#eaf7f3;border:1px solid #9ad8c6}
+  .veredicto strong{color:#047857}
+  th{background:#eef4fa;color:#475569}
+  .cierre__btns{display:none}
+  a{color:#02215D}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ PORTADA ══════════ -->
+<header class="portada">
+  <div class="env">
+    <div class="marca">
+      <svg class="marca__ico" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#0F2040"/>
+        <path d="M8 10l8 13 8-13" fill="none" stroke="url(#g)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#2EE9B9"/><stop offset="1" stop-color="#1CA0F4"/>
+        </linearGradient></defs>
+      </svg>
+      <span class="marca__txt">VONOA <span>WEB</span></span>
+    </div>
+
+    <p class="etiqueta">Anexo a la propuesta VW-2608-PM01</p>
+    <h1>El mismo sistema, <span class="grad">tres formas de pagarlo</span></h1>
+    <p class="portada__bajada">
+      Nos dijeron que el desembolso inicial pesa. Tienen razón: es mucho dinero
+      antes de ver el primer peso de retorno. Aquí está resuelto sin bajarle nada
+      al alcance.
+    </p>
+
+    <dl class="meta">
+      <div><dt>Para</dt><dd>Agencia PuroMole</dd></div>
+      <div><dt>Atención</dt><dd>Mariana Covarrubias</dd></div>
+      <div><dt>Fecha</dt><dd>21 de agosto, 2026</dd></div>
+      <div><dt>Vigencia</dt><dd>30 días naturales</dd></div>
+      <div><dt>Folio</dt><dd>VW-2608-PM02</dd></div>
+    </dl>
+  </div>
+</header>
+
+<!-- ══════════ EL ARGUMENTO ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Antes de los números</p>
+    <h2>Esto no se compara contra una página web</h2>
+    <p class="sub">
+      Se compara contra lo que su cliente le paga a Airbnb cada mes por cada reserva.
+      Ese es el número que importa, y por eso pusimos una calculadora en vez de
+      un argumento de ventas: muevan los valores y vean ustedes.
+    </p>
+
+    <div class="calc">
+      <div class="calc__campos">
+        <div class="campo">
+          <label for="props">Propiedades en la cartera</label>
+          <div class="campo__fila">
+            <input type="range" id="props" min="1" max="20" step="1" value="6" />
+            <span class="campo__val" id="vProps">6</span>
+          </div>
+          <p class="campo__pie">Las que el dueño tiene anunciadas hoy.</p>
+        </div>
+
+        <div class="campo">
+          <label for="ingreso">Facturación mensual por propiedad</label>
+          <div class="campo__fila">
+            <input type="range" id="ingreso" min="5000" max="90000" step="2500" value="35000" />
+            <span class="campo__val" id="vIngreso">$35,000</span>
+          </div>
+          <p class="campo__pie">Lo que deja cada casa en un mes normal.</p>
+        </div>
+
+        <div class="campo">
+          <label for="comision">Comisión que paga el anfitrión</label>
+          <div class="campo__fila">
+            <input type="range" id="comision" min="3" max="20" step="0.5" value="15" />
+            <span class="campo__val" id="vComision">15%</span>
+          </div>
+          <p class="campo__pie">Varía según el esquema contratado. Ajústenlo al de su cliente.</p>
+        </div>
+
+        <div class="campo">
+          <label for="traslado">Reservas que pasarían a directas</label>
+          <div class="campo__fila">
+            <input type="range" id="traslado" min="5" max="70" step="5" value="25" />
+            <span class="campo__val" id="vTraslado">25%</span>
+          </div>
+          <p class="campo__pie">Los huéspedes que repiten y los que llegan por redes.</p>
+        </div>
+      </div>
+
+      <div class="calc__salida">
+        <div class="res">
+          <p class="res__cifra res__cifra--bien" id="rAhorro">$7,875</p>
+          <p class="res__et">Comisión que deja de pagar al mes</p>
+        </div>
+        <div class="res">
+          <p class="res__cifra" id="rCosto">$2,690</p>
+          <p class="res__et">Mensualidad del sistema (la más cara)</p>
+        </div>
+        <div class="res">
+          <p class="res__cifra res__cifra--bien" id="rMeses">1 mes</p>
+          <p class="res__et">En recuperar el arranque</p>
+        </div>
+      </div>
+
+      <p class="veredicto" id="veredicto"></p>
+
+      <p class="supuestos">
+        <strong>Sobre estos números:</strong> los cuatro valores son supuestos que ustedes
+        mueven, no datos que estemos afirmando. Airbnb cobra distinto según el esquema que
+        el anfitrión tenga contratado, y el porcentaje de reservas que se traslada depende
+        del negocio de cada quien. Pusimos 25% como valor de arranque porque es conservador:
+        casi siempre es más alto en cuanto el huésped que repite descubre que puede reservar
+        directo. <strong>Verifíquenlo con el dato real de su cliente antes de presentarlo.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MODALIDADES ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Lo que cambia respecto a la primera propuesta</p>
+    <h2>Tres formas de pagar lo mismo</h2>
+    <p class="sub">
+      El alcance es idéntico al de la <strong>opción B</strong> de la propuesta anterior:
+      sitio completo, sincronización con Airbnb y panel del anfitrión. Lo único que
+      cambia es dónde cae el dinero. A menor arranque, mayor mensualidad — así funciona
+      cualquier financiamiento y preferimos decirlo de frente.
+    </p>
+
+    <div class="mods">
+
+      <article class="mod">
+        <p class="mod__letra">Modalidad 1</p>
+        <h3>De contado</h3>
+        <p class="mod__para">Si el cliente puede con el desembolso, es la más barata a la larga. Sin intereses de por medio.</p>
+        <div class="mod__cifras">
+          <div class="mod__linea"><span>Arranque</span><b>$19,900</b></div>
+          <div class="mod__linea mod__linea--chica"><span>Mensual</span><b>$1,190</b></div>
+        </div>
+        <p class="mod__nota">La mensualidad es solo infraestructura y soporte, desde el primer mes.</p>
+        <ul>
+          <li>El precio más bajo a 18 meses</li>
+          <li>40% &middot; 30% &middot; 30% por etapas</li>
+          <li>Sin permanencia mínima</li>
+        </ul>
+      </article>
+
+      <article class="mod mod--reco">
+        <span class="mod__sello">La que recomendamos</span>
+        <p class="mod__letra">Modalidad 2</p>
+        <h3>Diferida a un año</h3>
+        <p class="mod__para">Baja el arranque a menos de la mitad y sale casi igual de barata. Es el punto dulce entre las tres.</p>
+        <div class="mod__cifras">
+          <div class="mod__linea"><span>Arranque</span><b>$7,900</b></div>
+          <div class="mod__linea mod__linea--chica"><span>Mensual año 1</span><b>$2,290</b></div>
+        </div>
+        <p class="mod__nota">A partir del mes 13 baja sola a <strong>$1,190</strong>: el desarrollo ya quedó pagado.</p>
+        <ul>
+          <li>Solo $1,200 más que de contado</li>
+          <li>Permanencia de 12 meses</li>
+          <li>Se puede liquidar antes sin penalización</li>
+        </ul>
+      </article>
+
+      <article class="mod">
+        <p class="mod__letra">Modalidad 3</p>
+        <h3>Casi sin arranque</h3>
+        <p class="mod__para">Para cuando el cliente no quiere soltar capital hasta ver el sistema funcionando. El costo del financiamiento es nuestro riesgo.</p>
+        <div class="mod__cifras">
+          <div class="mod__linea"><span>Arranque</span><b>$2,900</b></div>
+          <div class="mod__linea mod__linea--chica"><span>Mensual</span><b>$2,690</b></div>
+        </div>
+        <p class="mod__nota">A partir del mes 19 baja sola a <strong>$1,190</strong>.</p>
+        <ul>
+          <li>Entrada siete veces más baja</li>
+          <li>Permanencia de 18 meses</li>
+          <li>Cuesta ~$10,000 más en total</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <div class="tabla-env">
+      <table>
+        <thead>
+          <tr>
+            <th>Modalidad</th><th class="num">Arranque</th><th class="num">Mensual</th>
+            <th class="num">Total a 18 meses</th><th class="num">Diferencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>1 &middot; De contado</strong></td><td class="num">$19,900</td><td class="num">$1,190</td><td class="num">$41,320</td><td class="num tenue">—</td></tr>
+          <tr class="destaca"><td><strong>2 &middot; Diferida</strong></td><td class="num">$7,900</td><td class="num">$2,290 → $1,190</td><td class="num">$42,520</td><td class="num">+$1,200</td></tr>
+          <tr><td><strong>3 &middot; Casi sin arranque</strong></td><td class="num">$2,900</td><td class="num">$2,690</td><td class="num">$51,320</td><td class="num">+$10,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tenue" style="margin-top:14px;font-size:14.5px">
+      Cifras en pesos, más IVA. El total a 18 meses ya incluye todas las mensualidades del periodo.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ PILOTO ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Si aun así prefieren no arriesgar</p>
+    <h2>Arranquen con dos propiedades</h2>
+    <p class="sub">
+      La objeción de fondo casi nunca es el precio: es no saber si va a funcionar.
+      Esto la resuelve sin discutir números.
+    </p>
+
+    <div class="piloto">
+      <div>
+        <h3>Piloto de dos propiedades</h3>
+        <p>
+          Montamos el sistema completo &mdash; sitio, sincronización y panel &mdash; pero
+          con dos propiedades en lugar de la cartera entera. En tres semanas el dueño
+          está viendo reservas directas entrar, con su agenda de Airbnb sincronizada
+          de verdad.
+        </p>
+        <p>
+          <strong>Si deciden ampliar a toda la cartera dentro de los primeros seis meses,
+          los $6,900 se abonan completos</strong> a la modalidad que elijan. No pagan dos
+          veces por lo mismo, y si no convence, no se amplía y ahí quedó.
+        </p>
+      </div>
+      <div class="piloto__precio">
+        <b>$6,900</b>
+        <span>MXN más IVA<br />+ $890 al mes</span>
+      </div>
+    </div>
+
+    <div class="nota">
+      <h3>Por qué nos conviene ofrecerlo</h3>
+      <p>
+        Porque el sistema se vende solo cuando el dueño ve la primera reserva directa
+        caer sin comisión de por medio. <strong>Preferimos que lo compruebe con dos casas
+        a que nos diga que no por seis.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ LANDING ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Partida 2 · Para la agencia</p>
+    <h2>Su landing, también a plazos</h2>
+
+    <div class="tabla-env">
+      <table>
+        <thead><tr><th>Forma de pago</th><th>Cómo queda</th><th class="num">Total</th></tr></thead>
+        <tbody>
+          <tr><td><strong>De contado</strong></td><td class="tenue">Un solo pago al aceptar.</td><td class="num">$7,400</td></tr>
+          <tr class="destaca"><td><strong>En tres partes</strong></td><td class="tenue">$2,600 al arrancar y dos pagos de $2,600 a 30 y 60 días. Sin recargo.</td><td class="num">$7,800</td></tr>
+          <tr><td><strong>En paquete</strong></td><td class="tenue">Contratando también el sitio de propiedades, en el mismo periodo.</td><td class="num">$5,900</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="tenue" style="margin-top:14px;font-size:14.5px">
+      La landing no lleva mensualidad: es un sitio estático, no necesita servidor corriendo.
+      Solo el hosting, que va incluido el primer año.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ TRANSPARENCIA ══════════ -->
+<section>
+  <div class="env">
+    <p class="etiqueta">Las preguntas incómodas</p>
+    <h2>Qué pasa si algo sale mal</h2>
+    <p class="sub">
+      Preferimos contestarlas ahora que cuando ya haya un contrato firmado.
+    </p>
+
+    <div class="dupla">
+      <div>
+        <h3>Lo que sí garantizamos</h3>
+        <ul class="si">
+          <li>Si cancelan la mensualidad, el sitio se les entrega en código y sigue siendo suyo</li>
+          <li>Lo único que deja de funcionar sin servidor es la sincronización automática</li>
+          <li>Pueden llevárselo a otro proveedor cuando quieran: no hay candados</li>
+          <li>La mensualidad no sube durante los primeros 24 meses</li>
+          <li>30 días de garantía sobre cualquier falla del desarrollo</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Lo que hay que tener claro</h3>
+        <ul class="no">
+          <li>Las modalidades 2 y 3 tienen permanencia; salirse antes implica liquidar el saldo del desarrollo</li>
+          <li>La mensualidad no cubre funciones nuevas, solo mantener lo entregado</li>
+          <li>Si Airbnb cambia su formato de iCal, el ajuste va por nuestra cuenta; si cambia su política y lo cierra, se busca otra vía y eso sí se cotiza</li>
+          <li>Los plazos corren desde que llega el diseño completo, no desde el anticipo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CIERRE ══════════ -->
+<section class="cierre">
+  <div class="env">
+    <p class="etiqueta">Siguiente paso</p>
+    <h2>Elijan y arrancamos</h2>
+    <p>
+      Con que nos digan la modalidad y nos pasen el diseño, el lunes siguiente estamos
+      trabajando. Si prefieren empezar por el piloto, con más razón: son tres semanas.
+    </p>
+    <div class="cierre__btns">
+      <a class="btn" href="https://wa.me/5215644645574?text=Hola%20Vonoa%2C%20queremos%20avanzar%20con%20el%20proyecto%20de%20Airbnb" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <a class="btn btn--linea" href="propuesta.html">Ver la propuesta completa</a>
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="env">
+    <p><strong>Vonoa Web</strong> &mdash; Diseño web, IA y automatización · Guadalajara, Jalisco</p>
+    <p style="margin-top:6px">vonoaweb.com · hola@vonoaweb.com · Anexo VW-2608-PM02 · 21 de agosto de 2026</p>
+    <p style="margin-top:12px;font-size:12.5px">
+      Precios en pesos mexicanos, más IVA. Vigencia de 30 días naturales.
+      Este anexo sustituye la tabla de precios de la propuesta VW-2608-PM01; el alcance técnico no cambia.
+    </p>
+  </div>
+</footer>
+
+<script>
+/* ==========================================================================
+   Calculadora de retorno
+   Todos los valores son supuestos que mueve quien lee. No afirmamos ninguno.
+   ========================================================================== */
+(function () {
+  var pesos = function (n) { return '$' + Math.round(n).toLocaleString('es-MX'); };
+
+  var campos = {
+    props:    { el: document.getElementById('props'),    val: document.getElementById('vProps'),    fmt: function (v) { return v; } },
+    ingreso:  { el: document.getElementById('ingreso'),  val: document.getElementById('vIngreso'),  fmt: pesos },
+    comision: { el: document.getElementById('comision'), val: document.getElementById('vComision'), fmt: function (v) { return v + '%'; } },
+    traslado: { el: document.getElementById('traslado'), val: document.getElementById('vTraslado'), fmt: function (v) { return v + '%'; } }
+  };
+
+  // La modalidad más cara, para que el argumento se sostenga en el peor caso.
+  var MENSUAL_TOPE = 2690;
+  var ARRANQUE_TOPE = 2900;
+
+  function calcular() {
+    var props    = +campos.props.el.value;
+    var ingreso  = +campos.ingreso.el.value;
+    var comision = +campos.comision.el.value / 100;
+    var traslado = +campos.traslado.el.value / 100;
+
+    // Comisión que se deja de pagar sobre la parte de la facturación que
+    // se mueve a reserva directa.
+    var ahorro = props * ingreso * traslado * comision;
+    var neto   = ahorro - MENSUAL_TOPE;
+
+    document.getElementById('rAhorro').textContent = pesos(ahorro);
+    document.getElementById('rCosto').textContent  = pesos(MENSUAL_TOPE);
+
+    var elMeses = document.getElementById('rMeses');
+    var veredicto = document.getElementById('veredicto');
+
+    if (neto <= 0) {
+      elMeses.textContent = '—';
+      veredicto.className = 'veredicto veredicto--flojo';
+      veredicto.innerHTML =
+        'Con estos supuestos el ahorro <strong>no alcanza a cubrir la mensualidad</strong>. ' +
+        'Con una cartera de este tamaño conviene el piloto de dos propiedades, o de plano esperar.';
+      return;
+    }
+
+    // Meses en recuperar el arranque con el ahorro neto de cada mes.
+    var meses = Math.ceil(ARRANQUE_TOPE / neto);
+    elMeses.textContent = meses === 1 ? '1 mes' : meses + ' meses';
+
+    veredicto.className = 'veredicto';
+    veredicto.innerHTML =
+      'Le quedan <strong>' + pesos(neto) + ' limpios al mes</strong> después de pagar el sistema. ' +
+      'El arranque se recupera en <strong>' + (meses === 1 ? 'el primer mes' : meses + ' meses') + '</strong>, ' +
+      'y de ahí en adelante es dinero que antes se iba en comisiones.';
+  }
+
+  Object.keys(campos).forEach(function (k) {
+    var c = campos[k];
+    c.el.addEventListener('input', function () {
+      c.val.textContent = c.fmt(+c.el.value);
+      calcular();
+    });
+    c.val.textContent = c.fmt(+c.el.value);
+  });
+
+  calcular();
+})();
+</script>
+
+</body>
+</html>
